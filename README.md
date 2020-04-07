@@ -1,35 +1,27 @@
-*Psst — looking for an app template? Go here --> [sveltejs/template](https://github.com/sveltejs/template)*
+# SvelteML
 
----
+Hi! Svelte JS tries to remove some of the complexity of large reactive JS apps to the compiler, producing tree-shaken small app footprints in the meantime, all without a Virtual DOM.
 
-# component-template
+This library is combined with Tensorflow JS to add Machine learning features to any Svelte app. The aim is make it as simple as possible to integrate ML into your app.
 
-A base for building shareable Svelte components. Clone it with [degit](https://github.com/Rich-Harris/degit):
+# Text Toxicity
 
-```bash
-npx degit sveltejs/component-template my-new-component
-cd my-new-component
-npm install # or yarn
-```
+Ideal for things like customer reviews or somewhere you need to review what user writes before it gets sent. A pre-check before your server has to do the work.
 
-Your component's source code lives in `src/Component.svelte`.
+     <TextToxicity  {samples} verbose={true} on:prediction={yourHandlerFunction}
+    	 let:modelsLoaded
+    	 let:predictions
+    	 let:labels>
+              <!-- Your reactive code here -->
+     </TextToxicity>
 
-You can create a package that exports multiple components by adding them to the `src` directory and editing `src/index.js` to reexport them as named exports.
+| Parameter         | Type               | Description                                                                                                                     |
+| ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| **samples**       | _array of objects_ | The sentences to evaluate are in the 'text' field. E.g. `[{text: 'text to check'}]`                                             |
+| **on:prediction** | _event_            | triggered when a prediction comes in from Tensorflow.                                                                           |
+| **modelsLoaded**  | _boolean_          | tells you when the TF models etc are downloaded and ready to use. In the meantime, show a loading spinner in your reactive code |
+| **predictions**   | _array_            | tells your reactive code when the predictions for the given samples are ready.                                                  |
+| **labels**        | _array_            | is a list of prediction labels that appear in the predictions array response. Available after models are loaded                 |
+| **verbose**       | _boolean_          | enabled console logging for debugging purposes.                                                                                 |
 
-TODO
-
-* [ ] some firm opinions about the best way to test components
-* [ ] update `degit` so that it automates some of the setup work
-
-
-## Setting up
-
-* Run `npm init` (or `yarn init`)
-* Replace this README with your own
-
-
-## Consuming components
-
-Your package.json has a `"svelte"` field pointing to `src/index.js`, which allows Svelte apps to import the source code directly, if they are using a bundler plugin like [rollup-plugin-svelte](https://github.com/sveltejs/rollup-plugin-svelte) or [svelte-loader](https://github.com/sveltejs/svelte-loader) (where [`resolve.mainFields`](https://webpack.js.org/configuration/resolve/#resolve-mainfields) in your webpack config includes `"svelte"`). **This is recommended.**
-
-For everyone else, `npm run build` will bundle your component's source code into a plain JavaScript module (`dist/index.mjs`) and a UMD script (`dist/index.js`). This will happen automatically when you publish your component to npm, courtesy of the `prepublishOnly` hook in package.json.
+> **on:prediction:** Allows processing in the caller component's `<script>` not in the markup, which is mostly useful for rendering state.
