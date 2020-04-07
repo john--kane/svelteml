@@ -1,0 +1,42 @@
+{
+  "name": "svelteml",
+  "svelte": "src/index.js",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/john--kane/svelteml.git"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@tensorflow-models/knn-classifier": "^1.2.2",
+    "@tensorflow-models/mobilenet": "^2.0.4",
+    "@tensorflow-models/toxicity": "^1.2.2",
+    "@tensorflow-models/universal-sentence-encoder": "1.2.2",
+    "@tensorflow/tfjs": "1.7.2",
+    "stats.js": "^0.17.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^6.0.0",
+    "rollup": "^1.20.0",
+    "rollup-plugin-svelte": "^5.0.0",
+    "svelte": "^3.0.0"
+  },
+  "author": "John Kane",
+  "bugs": {
+    "url": "https://github.com/john--kane/svelteml/issues"
+  },
+  "keywords": [
+    "svelte",
+    "svelteml",
+    "TensorflowJS"
+  ],
+  "files": [
+    "src",
+    "dist"
+  ]
+}
