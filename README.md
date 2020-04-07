@@ -1,4 +1,5 @@
 # SvelteML
+> This lib is work in Progress
 
 Hi! Svelte JS tries to remove some of the complexity of large reactive JS apps to the compiler, producing tree-shaken small app footprints in the meantime, all without a Virtual DOM.
 
