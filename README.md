@@ -19,6 +19,9 @@ Ideal for things like customer reviews or somewhere you need to review what user
               <!-- Your reactive code here -->
      </TextToxicity>
 
+\* **samples** is required
+
+
 |        Parameter        |Type                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |**samples**|*array of objects*   |The sentences to evaluate are in the 'text' field. E.g.  `[{text: 'text to check'}]` |
