@@ -1,6 +1,5 @@
 import * as tf from "@tensorflow/tfjs-core";
 import { util } from "@tensorflow/tfjs-core";
-import { concatWithNulls, topK } from "./util";
 export { version } from "./version";
 /**
  * A K-nearest neighbors (KNN) classifier that allows fast
@@ -239,4 +238,32 @@ export class KNNClassifier {
 
 export function create() {
   return new KNNClassifier();
+}
+
+export function concatWithNulls(ndarray1, ndarray2) {
+  if (ndarray1 == null && ndarray2 == null) {
+    return null;
+  }
+  if (ndarray1 == null) {
+    return ndarray2.clone();
+  } else if (ndarray2 === null) {
+    return ndarray1.clone();
+  }
+  return ndarray1.concat(ndarray2, 0);
+}
+export function topK(values, k) {
+  const valuesAndIndices = [];
+  for (let i = 0; i < values.length; i++) {
+    valuesAndIndices.push({ value: values[i], index: i });
+  }
+  valuesAndIndices.sort((a, b) => {
+    return b.value - a.value;
+  });
+  const topkValues = new Float32Array(k);
+  const topkIndices = new Int32Array(k);
+  for (let i = 0; i < k; i++) {
+    topkValues[i] = valuesAndIndices[i].value;
+    topkIndices[i] = valuesAndIndices[i].index;
+  }
+  return { values: topkValues, indices: topkIndices };
 }

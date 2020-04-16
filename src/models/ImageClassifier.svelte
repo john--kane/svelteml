@@ -1,48 +1,43 @@
 <script>
-  import * as mobilenet from "@tensorflow-models/mobilenet";
-  import { createEventDispatcher } from "svelte";
-  import { onMount } from "svelte";
-  const dispatch = createEventDispatcher();
+  import * as mobilenet from '@tensorflow-models/mobilenet'
+  import { createEventDispatcher } from 'svelte'
+  import { onMount } from 'svelte'
+  const dispatch = createEventDispatcher()
 
-  export let image;
-  export let mobileNetConfig;
-  export let infer = false;
-  let model;
-  let predictions;
+  const version = 2
+  const alpha = 0.5
 
-  onMount(async () => {
-    if (mobileNetConfig) {
-      model = await mobilenet.load(mobileNetConfig);
-    } else {
-      model = await mobilenet.load();
-    }
-  });
+  export let src
+  export let mobileNetConfig = { version, alpha }
+  export let verbose = false
+
+  let image
+  let model
+  let predictions = []
 
   async function classify(_image) {
+    if (!model) model = await mobilenet.load(mobileNetConfig)
+
     if (_image && model) {
       // should be a valid image on the dom and model loaded.
-      if (checkType(_image)) {
-        let predictions = await model.classify(_image);
-        dispatch("predict", predictions);
-        if (infer) {
-          const logits = model.infer(img);
-          dispatch("logits", logits);
+      predictions = await model.classify(_image)
+      dispatch('predict', predictions)
 
-          // TODO: Add embeddings here
-        }
-      } else {
-        dispatch("error", "not valid");
+      if (verbose) {
+        const logits = model.infer(_image)
+        dispatch('logits', logits)
+        logits.print(true)
+
+        // Get the embedding.
+        const embedding = model.infer(_image, true)
+        embedding.print(true)
+        dispatch('embeddings', embedding)
       }
     }
   }
 
-  function checkType(element) {
-    // tf.Tensor3D | ImageData | HTMLImageElement |
-    //   HTMLCanvasElement | HTMLVideoElement
-    return true;
-  }
-
-  $: classify(image);
+  $: classify(image)
 </script>
 
+<img {src} bind:this={image} alt="classifiedImage" />
 <slot {predictions} />
