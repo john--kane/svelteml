@@ -1,5 +1,6 @@
-
 # SvelteML
+
+    npm install svelteml --save
 
 > Work in Progress
 
