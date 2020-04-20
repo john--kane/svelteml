@@ -15,6 +15,7 @@
   "dependencies": {
     "@tensorflow-models/knn-classifier": "^1.2.2",
     "@tensorflow-models/mobilenet": "^2.0.4",
+    "@tensorflow-models/posenet": "^2.2.1",
     "@tensorflow-models/speech-commands": "^0.4.2",
     "@tensorflow-models/toxicity": "^1.2.2",
     "@tensorflow-models/universal-sentence-encoder": "1.2.2",
