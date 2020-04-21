@@ -2,7 +2,7 @@
 
 ![svelteml](https://github.com/john--kane/svelteml/blob/master/docs/_media/svelteml.png?raw=true)
 
-## Overview 🤖 📖 {docsify-ignore}
+## Overview 🤖 📖 
 
 The purpose of SvelteML is to offer simple Components that can make ML more accessible. It leverages TensorflowJS to offer Svelte apps ML features out-of-the-box. It relies heavily on Svelte's reactivity feature and event hooks can be used to extend out the ML flow. e.g. on:poses in the Pose Estimator will give you the raw poses directfrom TensorflowJS.
 
