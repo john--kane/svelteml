@@ -1,12 +1,12 @@
 //KNN
-export { default as KNNImageClassifier } from "./models/KNNImageClassifier.svelte";
+// TODO: export { default as KNNImageClassifier } from "./models/KNNImageClassifier.svelte";
 
 // Image classification
 export { default as ImageClassifier } from "./models/ImageClassifier.svelte";
 export { default as ObjectDetection } from "./models/ObjectDetection.svelte";
 
 // Audio
-export { default as SpeechCommandRecognition } from "./models/SpeechCommandRecognition.svelte";
+// TODO: export { default as SpeechCommandRecognition } from "./models/SpeechCommandRecognition.svelte";
 
 // Text
 export { default as SentenceEncoding } from "./models/SentenceEncoding.svelte";

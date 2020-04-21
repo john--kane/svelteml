@@ -1,0 +1,13 @@
+- [Getting Started](/)
+
+- [Body Segmentation](BodySegmentation.md)
+  - [Bokeh Effect](BokehEffect.md)
+  - [Blurred Body Parts](BlurBodyParts.md)
+- [Object Detection](ObjectDetection.md)
+- [Multi-Person Pose Estimation](MultiPoseEstimator.md)
+- [Image Classification](ImageClassifier.md)
+- [Text Toxicity](TextToxicity.md)
+- [Sentence Encoding](SentenceEncoding.md)
+- [Coming Soon](ComingSoon.md)
+  - [KNN Image Classification](ComingSoon.md)
+  - [Speech Recognition](ComingSoon.md)

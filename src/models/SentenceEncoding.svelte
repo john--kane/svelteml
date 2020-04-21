@@ -20,4 +20,4 @@
   init()
 </script>
 
-<slot {modelsLoaded} />
+<slot {embeddings} {modelsLoaded} />

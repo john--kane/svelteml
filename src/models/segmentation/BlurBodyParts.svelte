@@ -6,7 +6,7 @@
   export let backgroundBlurAmount = 3
   export let edgeBlurAmount = 3
   export let flipHorizontal = false
-  export let faceBodyPartIdsToBlur = [0, 1, 11] //default,  the face, array of body parts ordinal
+  export let faceBodyPartIdsToBlur = [0, 1] //default,  the face, array of body parts ordinal
 
   export let outputCanvas
   export let image // ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement
