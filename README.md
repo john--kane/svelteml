@@ -4,7 +4,7 @@
 
 > Work in Progress
 
-![svelteml](https://github.com/john--kane/svelteml/blob/master/src/svelteml.png?raw=true)
+![svelteml](https://github.com/john--kane/svelteml/blob/master/docs/_media/svelteml.png?raw=true)
 
 Hi! Svelte JS tries to remove some of the complexity of large reactive JS apps to the compiler, producing tree-shaken small app footprints in the meantime, all without a Virtual DOM. 
 
