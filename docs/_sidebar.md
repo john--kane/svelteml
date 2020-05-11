@@ -8,6 +8,8 @@
 - [Image Classification](ImageClassifier.md)
 - [Text Toxicity](TextToxicity.md)
 - [Sentence Encoding](SentenceEncoding.md)
+- [Hand Pose Detection](HandPoseDetection.md)
+- [FaceMesh](FaceMesh.md)
 - [Coming Soon](ComingSoon.md)
   - [KNN Image Classification](ComingSoon.md)
   - [Speech Recognition](ComingSoon.md)
