@@ -1,6 +1,6 @@
 # SvelteML <small>0.0.2</small>
 
-![svelteml](https://github.com/john--kane/svelteml/blob/master/src/svelteml.png?raw=true)
+![svelteml](https://github.com/john--kane/svelteml/blob/master/docs/_media/svelteml.png?raw=true)
 
 ## Overview 🤖 📖 {docsify-ignore}
 
