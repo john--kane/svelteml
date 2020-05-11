@@ -16,19 +16,26 @@
   "dependencies": {
     "@tensorflow-models/body-pix": "^2.0.5",
     "@tensorflow-models/coco-ssd": "^2.0.3",
+    "@tensorflow-models/facemesh": "0.0.1",
+    "@tensorflow-models/handpose": "0.0.3",
     "@tensorflow-models/knn-classifier": "^1.2.2",
     "@tensorflow-models/mobilenet": "^2.0.4",
     "@tensorflow-models/posenet": "^2.2.1",
-    "@tensorflow-models/speech-commands": "^0.4.2",
+    "@tensorflow-models/speech-commands": "0.4.2",
     "@tensorflow-models/toxicity": "^1.2.2",
     "@tensorflow-models/universal-sentence-encoder": "1.2.2",
     "@tensorflow/tfjs": "1.7.2",
-    "stats.js": "^0.17.0"
+    "@tensorflow/tfjs-converter": "^1.7.3",
+    "@tensorflow/tfjs-core": "^1.7.3"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-node-resolve": "^6.0.0",
+    "promisify": "0.0.3",
     "rollup": "^1.20.0",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-svelte": "^5.0.0",
     "svelte": "^3.0.0"
   },
