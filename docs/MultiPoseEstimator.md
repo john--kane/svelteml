@@ -22,13 +22,8 @@ This element can take in an image and calculate the poses of multiple people wit
     </script>
 
     {#if captureImage}
-        <!-- if you don't use the debug prop then no need for this if condition, just saves on calls -->
-        <BlurBodyParts  image={captureImage}  outputCanvas={outputCanvas} on:complete={onBlurComplete} />
+     <MultiPoseEstimator image={captureImage} on:poses={onPoses} />
     {/if}
-     <MultiPoseEstimator
-         image={captureImage}
-         on:poses={onPoses}
-         />
 
 \* **image** is required \* **on:poses={eventFunction}** is required
 
