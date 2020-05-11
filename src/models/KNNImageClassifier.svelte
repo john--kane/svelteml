@@ -3,8 +3,12 @@
   import * as tf from '@tensorflow/tfjs'
   // import Stats from 'stats.js'
   import * as knnClassifier from '../knnClassifier.js'
-  import { onMount } from 'svelte'
-  import { createEventDispatcher } from 'svelte'
+  import {
+    onMount
+  } from 'svelte'
+  import {
+    createEventDispatcher
+  } from 'svelte'
 
   const dispatch = createEventDispatcher()
   let classifier, mobilenet, predictions
@@ -17,7 +21,10 @@
       classifier = knnClassifier.create()
       mobilenet = await mobilenetModule.load()
 
-      dispatch('classifier_ready', { classifier, mobilenet })
+      dispatch('classifier_ready', {
+        classifier,
+        mobilenet
+      })
     }
 
     if (!trainingImages && trainingImages.length == 0) {
