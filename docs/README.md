@@ -17,13 +17,14 @@ The purpose of SvelteML is to offer simple Components that can make ML more acce
 
 ## What's next
 
-### Classification
+### Classification / Segmentation
 
 - [x] Image Classification
 - [x] Body Segmentation
 - [x] Basic Multi-Pose Estimation
 - [x] Object Detection
-- [ ] KNN Classifier
+- [x] Face Mesh
+- [x] Hand Pose Detection
 
 ### Text-based inference
 
