@@ -1,4 +1,4 @@
-# SvelteML <small>0.0.2</small>
+# SvelteML <small>0.0.3</small>
 
 ![svelteml](https://github.com/john--kane/svelteml/blob/master/docs/_media/svelteml.png?raw=true)
 
