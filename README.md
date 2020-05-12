@@ -1,5 +1,8 @@
 # SvelteML <small>0.0.4</small>
 
+Documentation: https://john--kane.github.io/svelteml/#/
+
+
 ![svelteml](https://github.com/john--kane/svelteml/blob/master/docs/_media/svelteml.png?raw=true)
 
 ## Overview 🤖 📖
