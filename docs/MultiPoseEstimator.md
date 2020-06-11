@@ -6,24 +6,23 @@ This element can take in an image and calculate the poses of multiple people wit
 
     <script>
       //Only uses the MobileNet architecture currently
-      import { MultiPoseEstimator } from 'svelteml'
-      import { onMount } from 'svelte'
+      import { MultiPoseEstimator } from 'svelteml';
 
-      let captureImage // reactive image for passing to estimator
-      let outputCanvas // to display results of the poses
+      let camRef // input: TODO: get image, video or canvas source
 
-      onMount(async () => {
-        // TODO: get image, video or canvas source and add it to captureImage
-      })
-
+      // optional, can get complicated but there are convenience methods in the module export, to draw a skeleton or the keypoints
       function onPoses(poses) {
         console.log(poses);
       }
     </script>
 
+<<<<<<< HEAD
     {#if captureImage}
      <MultiPoseEstimator image={captureImage} on:poses={onPoses} />
     {/if}
+=======
+    <MultiPoseEstimator image="{camRef}" on:poses="{onPoses}" />
+>>>>>>> release/v0.0.5
 
 \* **image** is required \* **on:poses={eventFunction}** is required
 
@@ -31,20 +30,32 @@ This element can take in an image and calculate the poses of multiple people wit
 
 ## API
 
-| Parameter             | Type                | Description                                                                                                                                                                                                                                                                                                        |
-| --------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **image**             | _HTMLCanvasElement_ | The image resource to estimate (e.g. frame of a video)                                                                                                                                                                                                                                                             |
-| **debugCanvas**       | _HTMLCanvasElement_ | \*_optional_ allows you to see what pose was calculated. The points will be rendered on top of whatever canvas you send in.                                                                                                                                                                                        |
-| **flipHorizontal**    | _boolean_           | \*_optional_ Defaults to false. If the pose should be flipped/mirrored horizontally [https://github.com/tensorflow/tfjs-models/tree/master/posenet](https://github.com/tensorflow/tfjs-models/tree/master/posenet)                                                                                                 |
-| **maxDetections**     | _number_            | \*_optional_ the maximum number of poses to detect. Defaults to 5. [https://github.com/tensorflow/tfjs-models/tree/master/posenet](https://github.com/tensorflow/tfjs-models/tree/master/posenet)                                                                                                                  |
-| **scoreThreshold**    | _number_            | \*_optional_ Only return instance detections that have root part score greater or equal to this value. Defaults to 0.5. [https://github.com/tensorflow/tfjs-models/tree/master/posenet](https://github.com/tensorflow/tfjs-models/tree/master/posenet)                                                             |
-| **minPoseConfidence** | _number_            | \*_optional_ Tolerance for pose confidence, only used in debugCanvas rendering                                                                                                                                                                                                                                     |
-| **minPartConfidence** | _number_            | \*_optional_ Tolerance for part confidence, only used in debugCanvas rendering [https://github.com/tensorflow/tfjs-models/tree/master/posenet](https://github.com/tensorflow/tfjs-models/tree/master/posenet)                                                                                                      |
-| **nmsRadius**         | _number_            | \*_optional_ Non-maximum suppression part distance. It needs to be strictly positive. Two parts suppress each other if they are less than `nmsRadius` pixels away. Defaults to 30.0 [https://github.com/tensorflow/tfjs-models/tree/master/posenet](https://github.com/tensorflow/tfjs-models/tree/master/posenet) |
+| Parameter          | Type                | Description                                                                                                                                                                                                                                                                                                        |
+| ------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **image**          | _HTMLCanvasElement_ | The image resource to estimate (e.g. frame of a video)                                                                                                                                                                                                                                                             |
+| **flipHorizontal** | _boolean_           | \*_optional_ Defaults to false. If the pose should be flipped/mirrored horizontally [https://github.com/tensorflow/tfjs-models/tree/master/posenet](https://github.com/tensorflow/tfjs-models/tree/master/posenet)                                                                                                 |
+| **maxDetections**  | _number_            | \*_optional_ the maximum number of poses to detect. Defaults to 5. [https://github.com/tensorflow/tfjs-models/tree/master/posenet](https://github.com/tensorflow/tfjs-models/tree/master/posenet)                                                                                                                  |
+| **scoreThreshold** | _number_            | \*_optional_ Only return instance detections that have root part score greater or equal to this value. Defaults to 0.5. [https://github.com/tensorflow/tfjs-models/tree/master/posenet](https://github.com/tensorflow/tfjs-models/tree/master/posenet)                                                             |
+| **nmsRadius**      | _number_            | \*_optional_ Non-maximum suppression part distance. It needs to be strictly positive. Two parts suppress each other if they are less than `nmsRadius` pixels away. Defaults to 30.0 [https://github.com/tensorflow/tfjs-models/tree/master/posenet](https://github.com/tensorflow/tfjs-models/tree/master/posenet) |
 
 ## Events
 
-| Parameter       | Type               | Description                                            |
-| --------------- | ------------------ | ------------------------------------------------------ |
-| **on:poses**    | _array of objects_ | The raw array of poses prediction made by the model    |
-| **error:debug** | _array of objects_ | Triggered when the debugCanvas is not a Canvas element |
+| Parameter                | Type               | Description                                                                               |
+| ------------------------ | ------------------ | ----------------------------------------------------------------------------------------- |
+| **on:poses**             | _array of objects_ | The raw array of poses prediction made by the model                                       |
+| **on:modelLoadStarted**  | _event_            | Lifecycle event, can be useful for rendering 'loading' state before the model is executed |
+| **on:modelLoadFinished** | _event_            | Lifecycle event, can be useful for rendering 'loading' state before the model is executed |
+
+## Module Exports
+
+| Parameter                | Description                                                                   |
+| ------------------------ | ----------------------------------------------------------------------------- |
+| **getBoundingBox**       | Draws a bounding box around the posers found                                  |
+| **getAdjacentKeyPoints** | Convenience method for getting the adjeacent keypoints returned in the poses. |
+
+# Deprecated
+
+| Parameter             | Type     | Description                                     |
+| --------------------- | -------- | ----------------------------------------------- |
+| **minPoseConfidence** | _number_ | Can be passed directly to the convience methods |
+| **minPartConfidence** | _number_ | Can be passed directly to the convience methods |

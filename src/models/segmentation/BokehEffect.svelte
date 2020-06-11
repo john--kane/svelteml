@@ -1,3 +1,7 @@
+<script context="module">
+  let net
+</script>
+
 <script>
   import * as bodyPix from '@tensorflow-models/body-pix'
   import { createEventDispatcher } from 'svelte'
@@ -8,28 +12,37 @@
   export let flipHorizontal = false
   export let outputCanvas
   export let image // ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement
+  export let verbose = false
   const dispatch = createEventDispatcher()
-  let net
 
-  async function estimateSegmentationOnImage() {
+  onMount(async () => {
+    dispatch('modelLoadStarted')
     if (!net) {
       net = await bodyPix.load()
     }
+    if (verbose) console.debug('model loaded', net)
+    dispatch('modelLoadFinished')
+  })
 
-    if (image && outputCanvas && outputCanvas instanceof HTMLCanvasElement) {
-      const segmentation = await net.segmentPerson(image)
-      dispatch('segmentation', segmentation)
+  async function estimateSegmentationOnImage(_image) {
+    const segmentation = await net.segmentPerson(_image)
+    dispatch('segmentation', segmentation)
+
+    if (outputCanvas && outputCanvas instanceof HTMLCanvasElement) {
       bodyPix.drawBokehEffect(
         outputCanvas,
-        image,
+        _image,
         segmentation,
         backgroundBlurAmount,
         edgeBlurAmount,
         flipHorizontal,
       )
       dispatch('complete', segmentation)
+      if (verbose) console.debug('segmentation complete', segmentation)
     }
   }
 
-  $: estimateSegmentationOnImage(image)
+  $: if (net && image) {
+    estimateSegmentationOnImage(image)
+  }
 </script>

@@ -1,5 +1,5 @@
 import * as posenet from "@tensorflow-models/posenet";
-import * as tf from "@tensorflow/tfjs";
+import * as tf from "@tensorflow/tfjs-core";
 
 const color = "aqua";
 const boundingBoxColor = "red";
@@ -90,6 +90,13 @@ export function drawBoundingBox(keypoints, ctx) {
     boundingBox.maxY - boundingBox.minY
   );
 
+  // console.debug(
+  //   boundingBox.minX,
+  //   boundingBox.minY,
+  //   boundingBox.maxX - boundingBox.minX,
+  //   boundingBox.maxY - boundingBox.minY
+  // );
+  ctx.fill();
   ctx.strokeStyle = boundingBoxColor;
   ctx.stroke();
 }

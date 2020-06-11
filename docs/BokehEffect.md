@@ -9,25 +9,16 @@ Bokeh is defined as “the effect of a soft out-of-focus background that you get
 
     <script>
       import { BokehEffect } from 'svelteml'
-      import { onMount } from 'svelte'
 
-      let captureImage // reactive image for passing to estimator
-      let outputCanvas // to display results of the poses
+      let camRef // input: TODO: get image, video or canvas source
+      let testCanvas // output: TODO: bind a canvas if you want to output the effect of the blur to the screen.
 
-      onMount(async () => {
-        // TODO: get image, video or canvas source and add it to captureImage
-      })
-
-      function onBokehComplete(segmentation) {
-        // TODO: If you want custom behaviour, then use the on:complete and you'll get the bokeh segmentation result
-        console.log(segmentation);
-      }
     </script>
 
-    {#if captureImage}
-        <!-- if you want to do something with the segmentation then add the on:complete event handler -->
-        <BokehEffect image={captureImage} outputCanvas={outputCanvas} on:complete={onBokehComplete} />
-    {/if}
+    <!-- Add on:segmentation="{onSegmentation}" if you want access to the raw data -->
+    <BokehEffect image="{camRef}" outputCanvas="{testCanvas}" />
+
+    <!-- Bind your testCanvas -->
 
 ## API
 
@@ -41,10 +32,12 @@ Bokeh is defined as “the effect of a soft out-of-focus background that you get
 
 ## Events
 
-| Parameter           | Type    | Parameters                                                                                             |
-| ------------------- | ------- | ------------------------------------------------------------------------------------------------------ |
-| **on:segmentation** | _event_ | Segmentation object with the output from Body Pix's segmentPerson method.                              |
-| **on:complete**     | _event_ | This is triggered only when the segmentation and the bokeh effect has been applied to the outputCanvas |
+| Parameter                | Type    | Description                                                                                            |
+| ------------------------ | ------- | ------------------------------------------------------------------------------------------------------ |
+| **on:segmentation**      | _event_ | Segmentation object with the output from Body Pix's segmentPerson method.                              |
+| **on:complete**          | _event_ | This is triggered only when the segmentation and the bokeh effect has been applied to the outputCanvas |
+| **on:modelLoadStarted**  | _event_ | Lifecycle event, can be useful for rendering 'loading' state before the model is executed              |
+| **on:modelLoadFinished** | _event_ | Lifecycle event, can be useful for rendering 'loading' state before the model is executed              |
 
 ## Model Information
 
