@@ -1,3 +1,7 @@
+<script context="module">
+  let model
+</script>
+
 <script>
   import { onMount } from 'svelte'
   import * as toxicity from '@tensorflow-models/toxicity'
@@ -7,8 +11,8 @@
   export let samples
   export let verbose = true
 
-  let model, labels, predictions
-  
+  let labels, predictions
+
   const classify = async (inputs) => {
     const results = await model.classify(inputs)
     return inputs.map((d, i) => {
@@ -21,26 +25,28 @@
   }
 
   async function predict(_samples) {
-    if (!model) {
-            if(verbose)console.time("Model loading")
-      dispatch("modelLoadStarted");
-      model = await toxicity.load()
-      dispatch("modelLoadFinished");
-      if(verbose)console.timeEnd("Model loading")
-    }
     labels = model.model.outputNodes.map((d) => d.split('/')[0])
-
+    console.debug('Predicting')
     dispatch('labels', labels)
 
-    if (_samples && _samples.length > 0) {
-      predictions = await classify(_samples.map((d) => d.text))
-      if (verbose) console.debug(labels)
-      if (verbose) console.debug(predictions)
+    predictions = await classify(_samples.map((d) => d.text))
+    if (verbose) console.debug(labels)
+    if (verbose) console.debug(predictions)
 
-      dispatch('prediction', predictions)
-    }
+    dispatch('prediction', predictions)
   }
-  $: predict(samples)
+
+  onMount(async () => {
+    if (!model) {
+      dispatch('modelLoadStarted')
+      model = await toxicity.load()
+      dispatch('modelLoadFinished')
+    }
+  })
+
+  $: if (model && samples && samples.length > 0) {
+    predict(samples)
+  }
 </script>
 
 <slot {predictions} {labels} {model} />

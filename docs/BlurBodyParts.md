@@ -5,25 +5,21 @@
 ## Sample Usage
 
     <script>
-      import { BlurBodyParts } from 'svelteml'
-      import { onMount } from 'svelte'
+      import { BlurBodyParts, BodyParts } from 'svelteml'
 
-      let captureImage // reactive image for passing to estimator
-      let outputCanvas // to display results of the poses
+      let camRef // input: TODO: get image, video or canvas source
+      let testCanvas // output: TODO: bind a canvas if you want to output the effect of the blur to the screen.
 
-      onMount(async () => {
-        // TODO: get image, video or canvas source and add it to captureImage
-      })
-
-      function onBlurComplete(partSegmentations) {
-        console.log(partSegmentation);
+      // optional
+      function onSegmentation(partsSegmentations) {
+        console.log(partsSegmentations);
       }
     </script>
 
-    {#if captureImage}
-        <!-- if you don't use the debug prop then no need for this if condition, just saves on calls -->
-        <BlurBodyParts  image={captureImage}  outputCanvas={outputCanvas} on:complete={onBlurComplete} />
-    {/if}
+    <!-- Add on:segmentation="{onSegmentation}" if you want access to the raw data -->
+    <BlurBodyParts image="{camRef}" outputCanvas="{testCanvas}" />
+
+    <!-- Bind your testCanvas -->
 
 ## API
 
@@ -38,12 +34,15 @@
 
 ## Events
 
-| Parameter           | Type    | Parameters                                                                                             |
-| ------------------- | ------- | ------------------------------------------------------------------------------------------------------ |
-| **on:segmentation** | _event_ | Segmentation object with the output from Body Pix's segmentMultiPersonParts method.                    |
-| **on:complete**     | _event_ | This is triggered only when the segmentation and the bokeh effect has been applied to the outputCanvas |
+| Parameter                | Type    | Description                                                                               |
+| ------------------------ | ------- | ----------------------------------------------------------------------------------------- |
+| **on:segmentation**      | _event_ | Segmentation object with the output from Body Pix's segmentMultiPersonParts method.       |
+| **on:modelLoadStarted**  | _event_ | Lifecycle event, can be useful for rendering 'loading' state before the model is executed |
+| **on:modelLoadFinished** | _event_ | Lifecycle event, can be useful for rendering 'loading' state before the model is executed |
 
-## Body Parts Index
+## Module Exports
+
+### Body Parts Index
 
 | Ordinal | Body Part             |
 | ------- | --------------------- |
