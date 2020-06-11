@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# SvelteML <small>0.0.4</small>
-=======
 # SvelteML <small>0.0.5</small>
->>>>>>> release/v0.0.5
 
 ![svelteml](https://github.com/john--kane/svelteml/blob/master/docs/_media/svelteml.png?raw=true)
 
@@ -22,11 +18,6 @@ The purpose of SvelteML is to offer simple Components that can make ML more acce
 - [x] Body Segmentation
 - [x] Basic Multi-Pose Estimation
 - [x] Object Detection
-<<<<<<< HEAD
-- [x] Face Mesh
-- [x] Hand Pose Detection
-=======
->>>>>>> release/v0.0.5
 
 ### Text-based inference
 

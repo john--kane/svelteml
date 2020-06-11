@@ -16,13 +16,7 @@ This element can take in an image and calculate the poses of multiple people wit
       }
     </script>
 
-<<<<<<< HEAD
-    {#if captureImage}
-     <MultiPoseEstimator image={captureImage} on:poses={onPoses} />
-    {/if}
-=======
     <MultiPoseEstimator image="{camRef}" on:poses="{onPoses}" />
->>>>>>> release/v0.0.5
 
 \* **image** is required \* **on:poses={eventFunction}** is required
 
